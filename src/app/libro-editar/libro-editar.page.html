@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text="Volver" defaultHref="/libros"></ion-back-button>
+    </ion-buttons>
+    <ion-title [innerHTML]="libroEditar.titulo"></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="editarLibro()" [disabled]="!form.valid">
+        <ion-icon color="light" slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding contenido">
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-img style="width: 300px; height: auto; display: block; margin: 0 auto;" [src]="libroEditar.portada">
+          </ion-img>
+        </ion-col>
+      </ion-row>
+      <hr>
+    </ion-grid>
+    <ion-grid class="bg-transparent">
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Editar título</ion-label>
+            <ion-input color="{{ form.controls.titulo.errors && form.controls.titulo.dirty ? 'danger' : 'primary' }}"
+              type="text" formControlName="titulo"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="form.controls.titulo.invalid && (form.controls.titulo.touched || form.controls.titulo.dirty)"
+            color="danger">
+            <div>Más de 5 caracteres</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Editar Resumen</ion-label>
+            <ion-textarea
+              color="{{ form.controls.resumen.errors && form.controls.resumen.dirty ? 'danger' : 'primary' }}" rows="2"
+              formControlName="resumen"></ion-textarea>
+          </ion-item>
+          <ion-item
+            *ngIf="form.controls.resumen.invalid && (form.controls.resumen.touched || form.controls.resumen.dirty)"
+            color="danger">
+            <div>Entre 10 y 500 caracteres</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Editar Cantidad</ion-label>
+            <ion-input
+              color="{{ form.controls.cantidad.errors && form.controls.cantidad.dirty ? 'danger' : 'primary' }}"
+              type="number" formControlName="cantidad"></ion-input>
+          </ion-item>
+          <ion-item
+            *ngIf="form.controls.cantidad.invalid && (form.controls.cantidad.touched || form.controls.cantidad.dirty)"
+            color="danger">
+            <div>No puede ser negativo</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

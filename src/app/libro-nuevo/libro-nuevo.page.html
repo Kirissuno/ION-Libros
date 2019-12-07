@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text="Volver" defaultHref="/libros"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="dark">Nuevo Libro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="nuevoLibro()" [disabled]="!form.valid">
+        <ion-icon color="light" slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding contenido">
+  <form [formGroup]="form">
+    <ion-grid class="bg-transparent">
+      <ion-row> 
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">ISBN</ion-label>
+            <ion-input color="{{ form.controls.isbn.errors && form.controls.isbn.dirty ? 'danger' : 'primary' }}"
+              formControlName="isbn" type="text" name="isbn" [(ngModel)]="isbn"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="form.controls.isbn.invalid && (form.controls.isbn.touched || form.controls.isbn.dirty)"
+            color="danger">
+            <div>El ISBN debe contener 5 caracteres</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Título</ion-label>
+            <ion-input color="{{ form.controls.titulo.errors && form.controls.titulo.dirty ? 'danger' : 'primary' }}"
+              formControlName="titulo" type="text" name="titulo" [(ngModel)]="titulo"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="form.controls.titulo.invalid && (form.controls.titulo.touched || form.controls.titulo.dirty)"
+            color="danger">
+            <div>Más de 5 caracteres</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Resumen</ion-label>
+            <ion-textarea
+              color="{{ form.controls.resumen.errors && form.controls.resumen.dirty ? 'danger' : 'primary' }}"
+              formControlName="resumen" rows="2" name="resumen" [(ngModel)]="resumen"></ion-textarea>
+          </ion-item>
+          <ion-item
+            *ngIf="form.controls.resumen.invalid && (form.controls.resumen.touched || form.controls.resumen.dirty)"
+            color="danger">
+            <div>Entre 10 y 500 caracteres</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Cantidad</ion-label>
+            <ion-input
+              color="{{ form.controls.cantidad.errors && form.controls.cantidad.dirty ? 'danger' : 'primary' }}"
+              formControlName="cantidad" type="number" name="cantidad" [(ngModel)]="cantidad"></ion-input>
+          </ion-item>
+          <ion-item
+            *ngIf="form.controls.cantidad.invalid && (form.controls.cantidad.touched || form.controls.cantidad.dirty)"
+            color="danger">
+            <div>No puede ser negativo</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item color="none">
+            <ion-label position="floating">Portada (URL)</ion-label>
+            <ion-input
+              color="{{ form.controls.portada.errors && form.controls.portada.dirty ? 'danger' : 'primary' }}"
+              formControlName="portada" type="text" name="portada" [(ngModel)]="portada"></ion-input>
+          </ion-item>
+          <ion-item
+            *ngIf="form.controls.portada.invalid && (form.controls.portada.touched || form.controls.portada.dirty)"
+            color="danger">
+            <div>URL no válida, debe tener más de 10 caracteres (jpg y png)</div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-title color="dark">Listado de Libros</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="nuevoLibro()">
+        <ion-icon color="light" slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list class="bg-transparent">
+          <ion-item-sliding style="margin-top: 5px; margin-bottom: 5px;" *ngFor="let libro of librosCargados" #slidingItem>
+            <ion-item color="none" [routerLink]="['/', 'libros', 'detalles', libro.isbn]" detail>
+              <ion-thumbnail slot="start">
+                <ion-img [src]="libro.portada"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <h4 [innerHTML]="libro.titulo"></h4>
+                <p [innerHTML]="libro.cantidad"></p>
+              </ion-label>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option class="btnborrar" (click)="onDeleteLibro(libro, slidingItem)">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+              </ion-item-option>
+              <ion-item-option class="btneditar" (click)="onEditLibro(libro.isbn, slidingItem)">
+                <ion-icon slot="icon-only" name="create"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

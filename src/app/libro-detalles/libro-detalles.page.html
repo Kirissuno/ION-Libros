@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text="Volver" defaultHref="/libros"></ion-back-button>
+    </ion-buttons>
+    <ion-title [innerHTML]="libroCargado.titulo"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido">
+  <hr>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-img style="width: 300px; height: auto; display: block; margin: 0 auto;" [src]="libroCargado.portada"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="ion-padding ion-text-center">
+          <h3 [innerHTML]="libroCargado.resumen"></h3>
+          <hr>
+          <h4 [innerHTML]="'Cantidad '+ libroCargado.cantidad"></h4>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
